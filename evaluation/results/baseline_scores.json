@@ -1,0 +1,7 @@
+{
+  "model": "baseline",
+  "n_examples": 100,
+  "json_validity_rate": 0.53,
+  "field_match_avg": 0.2726,
+  "refusal_accuracy": 0.45
+}

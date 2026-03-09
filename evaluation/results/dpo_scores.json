@@ -1,0 +1,7 @@
+{
+  "model": "dpo",
+  "n_examples": 100,
+  "json_validity_rate": 1.0,
+  "field_match_avg": 0.7433,
+  "refusal_accuracy": 0.94
+}

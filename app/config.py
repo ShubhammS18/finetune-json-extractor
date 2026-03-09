@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     sft_model_id:           str = ''
     dpo_model_id:           str = ''
 
-    base_model: str = 'accounts/fireworks/models/qwen2p5-7b-instruct'
+    base_model: str = 'accounts/fireworks/models/qwen3-8b'
 
     required_fields: list[str] = [
         'title', 'company', 'location', 'remote',

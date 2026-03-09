@@ -1,11 +1,16 @@
 import json
 from app.config import settings
 
+def strip_think_tags(text: str) -> str:
+    """Remove <think>...</think> blocks that reasoning models prepend."""
+    if '</think>' in text:
+        return text.split('</think>', 1)[-1].strip()
+    return text.strip()
 
 def is_valid_json(text: str) -> bool:
     """Return True if `text` is a valid JSON string, False otherwise."""
     try:
-        json.loads(text.strip())
+        json.loads(strip_think_tags(text).strip())
         return True
     except (json.JSONDecodeError, TypeError):
         return False
@@ -67,7 +72,7 @@ def refusal_correctness(predicted_text: str, reference: dict) -> bool:
     use field_exact_match() for that.
     """
     try:
-        predicted = json.loads(predicted_text.strip())
+        predicted = json.loads(strip_think_tags(predicted_text).strip())
     except (json.JSONDecodeError, TypeError):
         return False
 
@@ -95,7 +100,7 @@ def score_extraction(predicted_text: str, reference: dict) -> dict:
 
     # Single parse — result reused by both field_exact_match and the flag
     try:
-        predicted = json.loads(predicted_text.strip())
+        predicted = json.loads(strip_think_tags(predicted_text).strip())
         valid = True
     except (json.JSONDecodeError, TypeError):
         pass
